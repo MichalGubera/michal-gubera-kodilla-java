@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.challenges;
+package com.kodilla.good.patterns.challenges.product_order_service;
 
 public class ProductOrderRepository implements OrderRepository{
     public void createOrder(User user, int quantity){
