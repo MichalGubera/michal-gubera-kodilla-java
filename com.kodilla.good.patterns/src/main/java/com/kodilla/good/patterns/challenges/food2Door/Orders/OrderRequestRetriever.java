@@ -1,11 +1,12 @@
 package com.kodilla.good.patterns.challenges.food2Door.Orders;
 
-import com.kodilla.good.patterns.challenges.food2Door.Suppliers.Supplier;
+import com.kodilla.good.patterns.challenges.food2Door.Suppliers.HealthyShop;
+import com.kodilla.good.patterns.challenges.food2Door.Suppliers.Shop;
 
 public class OrderRequestRetriever {
     public OrderRequest retrive(){
-        Supplier supplier = new Supplier("HealthyShop");
-        Order order = new Order("Heineken", 7, supplier);
-        return new OrderRequest(order, supplier);
+        Shop shop = new HealthyShop("HealthyShop");
+        Order order = new Order("almonds", 7, shop);
+        return new OrderRequest(order, shop);
     }
 }

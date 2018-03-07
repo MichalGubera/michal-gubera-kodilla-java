@@ -15,6 +15,6 @@ public class ApplicationFood2Door {
                 new OrderInformationImplementation(),
                 new OrderRepositoryImplementation(),
                 new OrderServiceImplementation());
-        orderServiceProcessor.process(orderRequest);
+        orderServiceProcessor.processOrder(orderRequest);
     }
 }

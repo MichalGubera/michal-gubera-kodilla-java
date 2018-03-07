@@ -1,16 +1,16 @@
 package com.kodilla.good.patterns.challenges.food2Door.Orders;
 
-import com.kodilla.good.patterns.challenges.food2Door.Suppliers.Supplier;
+import com.kodilla.good.patterns.challenges.food2Door.Suppliers.Shop;
 
 public class Order {
     private String productName;
     private int quantity;
-    private Supplier supplier;
+    private Shop shop;
 
-    public Order(String productName, int quantity, Supplier supplier) {
+    public Order(String productName, int quantity, Shop shop) {
         this.productName = productName;
         this.quantity = quantity;
-        this.supplier = supplier;
+        this.shop = shop;
     }
 
     public String getProductName() {
@@ -21,8 +21,8 @@ public class Order {
         return quantity;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public Shop getShop() {
+        return shop;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class Order {
         return "Order{" +
                 "productName='" + productName + '\'' +
                 ", quantity=" + quantity +
-                ", supplier=" + supplier +
+                ", shop=" + shop +
                 '}';
     }
 }

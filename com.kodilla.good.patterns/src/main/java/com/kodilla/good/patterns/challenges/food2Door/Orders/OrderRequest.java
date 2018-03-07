@@ -1,21 +1,21 @@
 package com.kodilla.good.patterns.challenges.food2Door.Orders;
 
-import com.kodilla.good.patterns.challenges.food2Door.Suppliers.Supplier;
+import com.kodilla.good.patterns.challenges.food2Door.Suppliers.Shop;
 
 public class OrderRequest {
     private Order order;
-    private Supplier supplier;
+    private Shop shop;
 
-    public OrderRequest(final Order order, final Supplier supplier) {
+    public OrderRequest(final Order order, final Shop shop) {
         this.order = order;
-        this.supplier = supplier;
+        this.shop = shop;
     }
 
     public Order getOrder() {
         return order;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public Shop getShop() {
+        return shop;
     }
 }

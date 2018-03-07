@@ -1,6 +1,7 @@
 package com.kodilla.good.patterns.challenges.food2Door.Processor;
 
 import com.kodilla.good.patterns.challenges.food2Door.Orders.OrderRequest;
+import com.kodilla.good.patterns.challenges.food2Door.Suppliers.Shop;
 
 public class OrderServiceProcessor {
     private OrderInformation orderInformation;
@@ -15,14 +16,15 @@ public class OrderServiceProcessor {
         this.orderService = orderService;
     }
 
-    public OrderDto process(final OrderRequest orderRequest){
-        boolean isOrdered = orderService.process(orderRequest.getOrder());
+    public OrderDto processOrder(final OrderRequest orderRequest){
+        boolean isOrdered = orderService.processOrderService(orderRequest.getOrder());
         if (isOrdered){
             orderInformation.inform(orderRequest.getOrder());
             orderRepository.createOrder(orderRequest.getOrder());
-            return new OrderDto(orderRequest.getSupplier(),true);
+
+            return new OrderDto(orderRequest.getShop(),true);
         } else {
-            return new OrderDto(orderRequest.getSupplier(),false);
+            return new OrderDto(orderRequest.getShop(),false);
         }
     }
 }

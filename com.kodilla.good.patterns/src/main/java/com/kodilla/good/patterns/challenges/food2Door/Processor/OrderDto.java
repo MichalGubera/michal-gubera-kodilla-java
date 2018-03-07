@@ -1,17 +1,17 @@
 package com.kodilla.good.patterns.challenges.food2Door.Processor;
 
-import com.kodilla.good.patterns.challenges.food2Door.Suppliers.Supplier;
+import com.kodilla.good.patterns.challenges.food2Door.Suppliers.Shop;
 
 public class OrderDto {
-    private Supplier supplier;
+    private Shop supplier;
     private boolean isOrdered;
 
-    public OrderDto(final Supplier supplier, final boolean isOrdered) {
+    public OrderDto(final Shop supplier, final boolean isOrdered) {
         this.supplier = supplier;
         this.isOrdered = isOrdered;
     }
 
-    public Supplier getSupplier() {
+    public Shop getSupplier() {
         return supplier;
     }
 
