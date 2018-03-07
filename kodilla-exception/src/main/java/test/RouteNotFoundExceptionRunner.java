@@ -1,6 +1,4 @@
-package com.kodilla.exception.test;
-
-import java.util.Map;
+package test;
 
 public class RouteNotFoundExceptionRunner {
     public static void main(String args[]){

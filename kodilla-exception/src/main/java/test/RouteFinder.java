@@ -1,4 +1,4 @@
-package com.kodilla.exception.test;
+package test;
 
 import java.util.HashMap;
 import java.util.Map;
