@@ -10,7 +10,7 @@ public class HealthyShop extends Shop {
     @Override
     public boolean process(Order order) {
         System.out.println("Thank you for choosing HealthyShop. You will receive free delivery above 100 PLN.");
-        return false;
+        return super.process(preprocess(order));
 
     }
 }
