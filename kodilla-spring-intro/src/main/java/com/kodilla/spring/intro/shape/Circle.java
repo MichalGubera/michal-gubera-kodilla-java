@@ -1,12 +1,5 @@
 package com.kodilla.spring.intro.shape;
 
-//public class Circle extends Figure{
-//    @Override
-//    public void draw() {
-//        System.out.println("This is a circle");
-//    }
-//}
-
 public class Circle implements Shape {
     @Override
     public String draw() {
@@ -14,3 +7,10 @@ public class Circle implements Shape {
         return "This is a circle";
     }
 }
+
+//public class Circle extends Figure {
+//    @Override
+//    public void draw() {
+//        System.out.println("This is a circle");
+//    }
+//}

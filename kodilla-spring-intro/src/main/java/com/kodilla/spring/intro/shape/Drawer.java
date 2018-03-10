@@ -12,17 +12,8 @@ public class Drawer {
     }
 }
 
+//public class Drawer {
 //    public void doDrawing() {
-//        //when extends super class
-//        Figure figure;
-//
-//        figure = new Circle();
-//        figure.draw();
-//
-//        figure = new Triangle();
-//        figure.draw();
-
-//        //when implements interface
 //        Shape shape;
 //
 //        shape = new Circle();
@@ -30,5 +21,27 @@ public class Drawer {
 //
 //        shape = new Triangle();
 //        shape.draw();
+//    }
+//}
+
+//public class Drawer {
+//    public void doDrawing() {
+//        Figure figure;
+//
+//        figure = new Circle();
+//        figure.draw();
+//
+//        figure = new Triangle();
+//        figure.draw();
+//    }
+//}
+
+//public class Drawer {
+//    public void doDrawing() {
+//        Circle circle = new Circle();
+//        Triangle triangle = new Triangle();
+//
+//        circle.draw();
+//        triangle.draw();
 //    }
 //}
