@@ -22,7 +22,7 @@ public class Invoice {
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "IID", unique = true)
+    @Column(name = "ID", unique = true)
     public int getId() {
         return id;
     }
