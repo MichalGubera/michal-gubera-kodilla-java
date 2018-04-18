@@ -5,14 +5,15 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedQuery(
-        name = "Company.retrieveCompanyBeginningWithThreeLetters",
-        query = "FROM Company WHERE LEFT(companyName, 3) :LETTERS"
-)
+//@NamedNativeQuery(
+//        name = "Company.retrieveCompanyBeginningWithThreeLetters",
+//        query = "SELECT * FROM companies WHERE SUBSTRING(COMPANY_NAME,1,3) = :LETTERS",
+//        resultClass = Company.class
+//)
 
 @NamedNativeQuery(
         name = "Company.retrieveCompanyContainingLetters",
-        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE CONCAT('%', :LETTERS, '%' )",
+        query = "SELECT * FROM companies WHERE COMPANY_NAME LIKE :LETTERS",
         resultClass = Company.class
 )
 

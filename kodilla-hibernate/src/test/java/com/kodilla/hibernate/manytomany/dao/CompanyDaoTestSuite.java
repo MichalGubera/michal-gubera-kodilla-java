@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
+@Transactional
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
@@ -97,10 +99,10 @@ public class CompanyDaoTestSuite {
         int greyMatterId = greyMatter.getId();
 
         //WHEN
-        List<Company> searchByFirstThree = companyDao.retrieveCompanyBeginningWithThreeLetters("Dat");
+        List<Company> searchByLetters = companyDao.retrieveCompanyContainingLetters("gre%");
 
         //THEN
-        Assert.assertEquals(1, searchByFirstThree.size());
+        Assert.assertEquals(1, searchByLetters.size());
 
         //CLEAN UP
         try {
