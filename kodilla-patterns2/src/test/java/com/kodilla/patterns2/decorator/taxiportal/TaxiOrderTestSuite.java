@@ -9,7 +9,7 @@ public class TaxiOrderTestSuite {
     public void testBasicTaxiOrderGetCost() {
         //Given
         TaxiOrder theOrder = new BasicTaxiOrder();
-
+//        System.out.println(theOrder.getCost());
         //When
         BigDecimal calculatedCost = theOrder.getCost();
 
@@ -21,7 +21,7 @@ public class TaxiOrderTestSuite {
     public void testBasicTaxiOrderGetDescription() {
         //Given
         TaxiOrder theOrder = new BasicTaxiOrder();
-
+//        System.out.println(theOrder.getDescription());
         //When
         String description = theOrder.getDescription();
 
@@ -34,6 +34,7 @@ public class TaxiOrderTestSuite {
         //Given
         TaxiOrder theOrder = new BasicTaxiOrder();
         theOrder = new TaxiNetworkOrderDecorator(theOrder);
+//        System.out.println(theOrder.getCost());
         //When
         BigDecimal theCost = theOrder.getCost();
 
@@ -46,6 +47,7 @@ public class TaxiOrderTestSuite {
         //Given
         TaxiOrder theOrder = new BasicTaxiOrder();
         theOrder = new TaxiNetworkOrderDecorator(theOrder);
+//        System.out.println(theOrder.getDescription());
         //When
         String description = theOrder.getDescription();
 
@@ -59,6 +61,7 @@ public class TaxiOrderTestSuite {
         TaxiOrder theOrder = new BasicTaxiOrder();
         theOrder = new MyTaxiNetworkOrderDecorator(theOrder);
         theOrder = new ChildSeatDecorator(theOrder);
+//        System.out.println(theOrder.getCost());
         //When
         BigDecimal theCost = theOrder.getCost();
 
@@ -72,6 +75,7 @@ public class TaxiOrderTestSuite {
         TaxiOrder theOrder = new BasicTaxiOrder();
         theOrder = new MyTaxiNetworkOrderDecorator(theOrder);
         theOrder = new ChildSeatDecorator(theOrder);
+//        System.out.println(theOrder.getDescription());
         //When
         String description = theOrder.getDescription();
 
@@ -86,6 +90,7 @@ public class TaxiOrderTestSuite {
         theOrder = new UberNetworkOrderDecorator(theOrder);
         theOrder = new ChildSeatDecorator(theOrder);
         theOrder = new ChildSeatDecorator(theOrder);
+//        System.out.println(theOrder.getCost());
         //When
         BigDecimal theCost = theOrder.getCost();
 
@@ -100,6 +105,7 @@ public class TaxiOrderTestSuite {
         theOrder = new UberNetworkOrderDecorator(theOrder);
         theOrder = new ChildSeatDecorator(theOrder);
         theOrder = new ChildSeatDecorator(theOrder);
+//        System.out.println(theOrder.getDescription());
         //When
         String description = theOrder.getDescription();
 
@@ -119,10 +125,6 @@ public class TaxiOrderTestSuite {
         BigDecimal theCost = theOrder.getCost();
         //Then
         assertEquals(new BigDecimal(52), theCost);
-        //When
-        String description = theOrder.getDescription();
-        //Then
-        assertEquals("Drive a course by Taxi Network variant VIP + child seat", description);
     }
 
     @Test
@@ -132,5 +134,9 @@ public class TaxiOrderTestSuite {
         theOrder = new VipDecorator(theOrder);
         theOrder = new ChildSeatDecorator(theOrder);
         System.out.println(theOrder.getDescription());
+        //When
+        String description = theOrder.getDescription();
+        //Then
+        assertEquals("Drive a course by Taxi Network variant VIP + child seat", description);
     }
 }
