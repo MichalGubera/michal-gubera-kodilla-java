@@ -13,7 +13,9 @@ import java.util.List;
 
 @NamedNativeQuery(
         name = "Company.retrieveCompanyContainingLetters",
-        query = "SELECT * FROM companies WHERE COMPANY_NAME LIKE :LETTERS",
+//        task 13.4
+//        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE :LETTERS",
+        query = "SELECT * FROM COMPANIES WHERE COMPANY_NAME LIKE CONCAT('%', :LETTERS, '%' )",
         resultClass = Company.class
 )
 

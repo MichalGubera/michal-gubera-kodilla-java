@@ -1,7 +1,8 @@
-package com.kodilla.hibernate.manytomany.dao;
+package com.kodilla.hibernate.manytomany.facade;
 
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
+import com.kodilla.hibernate.manytomany.dao.CompanyDao;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,15 +16,15 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @Transactional
 @SpringBootTest
-public class CompanyDaoTestSuite {
+public class FacadeTestSuite {
     @Autowired
-    CompanyDao companyDao;
+    private CompanyDao companyDao;
 
     @Autowired
-    EmployeeDao employeeDao;
+    ManyToManyFacade facade;
 
     @Test
-    public void testSaveManyToMany() {
+    public void testSearchEmployee() throws SearchProcessingException {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
@@ -44,32 +45,36 @@ public class CompanyDaoTestSuite {
         stephanieClarckson.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(greyMatter);
+
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        companyDao.save(dataMaesters);
+        int dataMaestersId = dataMaesters.getId();
+        companyDao.save(greyMatter);
+        int greyMatterId = greyMatter.getId();
 
         //When
-        companyDao.save(softwareMachine);
-        int softwareMachineId = softwareMachine.getId();
-        companyDao.save(dataMaesters);
-        int dataMaestersId = dataMaesters.getId();
-        companyDao.save(greyMatter);
-        int greyMatterId = greyMatter.getId();
+        List<Employee> searchResult = facade.processEmployeeSearch("val");
 
         //Then
-        Assert.assertNotEquals(0, softwareMachineId);
-        Assert.assertNotEquals(0, dataMaestersId);
-        Assert.assertNotEquals(0, greyMatterId);
-
-        //CleanUp
         try {
-            companyDao.delete(softwareMachineId);
-            companyDao.delete(dataMaestersId);
+            Assert.assertEquals(1, searchResult.size());
+        } finally {
+            //Cleanup
+            if(companyDao.exists(softwareMachineId)) {
+                companyDao.delete(softwareMachineId);
+            }
+            if(companyDao.exists(dataMaestersId)) {
+                companyDao.delete(dataMaestersId);
+            }
+            if(companyDao.exists(greyMatterId)) {
             companyDao.delete(greyMatterId);
-        } catch (Exception e) {
-            //do nothing
+            }
         }
     }
 
     @Test
-    public void testFindCompanyQuery() {
+    public void testCompanySearch() throws SearchProcessingException {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
@@ -98,66 +103,21 @@ public class CompanyDaoTestSuite {
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
 
-        //WHEN
-        List<Company> searchByLetters = companyDao.retrieveCompanyContainingLetters("gre%");
+        //When
+        List<Company> searchResult = facade.processCompanySearch("oft");
 
-        //THEN
-        Assert.assertEquals(1, searchByLetters.size());
+        //Then
+        Assert.assertEquals(1, searchResult.size());
 
-        //CLEAN UP
-        try {
+        //Cleanup
+        if(companyDao.exists(softwareMachineId)) {
             companyDao.delete(softwareMachineId);
-            companyDao.delete(dataMaestersId);
-            companyDao.delete(greyMatterId);
-        } catch (Exception e) {
-            //do nothing
         }
-
-    }
-
-    @Test
-    public void testFindEmployeeQuery() {
-        //Given
-        Employee johnSmith = new Employee("John", "Smith");
-        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
-        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
-
-        Company softwareMachine = new Company("Software Machine");
-        Company dataMaesters = new Company("Data Maesters");
-        Company greyMatter = new Company("Grey Matter");
-
-        softwareMachine.getEmployees().add(johnSmith);
-        dataMaesters.getEmployees().add(stephanieClarckson);
-        dataMaesters.getEmployees().add(lindaKovalsky);
-        greyMatter.getEmployees().add(johnSmith);
-        greyMatter.getEmployees().add(lindaKovalsky);
-
-        johnSmith.getCompanies().add(softwareMachine);
-        johnSmith.getCompanies().add(greyMatter);
-        stephanieClarckson.getCompanies().add(dataMaesters);
-        lindaKovalsky.getCompanies().add(dataMaesters);
-        lindaKovalsky.getCompanies().add(greyMatter);
-
-        companyDao.save(softwareMachine);
-        int softwareMachineId = softwareMachine.getId();
-        companyDao.save(dataMaesters);
-        int dataMaestersId = dataMaesters.getId();
-        companyDao.save(greyMatter);
-        int greyMatterId = greyMatter.getId();
-
-        //WHEN
-        List<Employee> findEmployeeByName = employeeDao.retrieveEmployeesFindByLetters("val");
-
-        //THEN
-        Assert.assertEquals(1, findEmployeeByName.size());
-
-        //CLEAN UP
-        try {
-            companyDao.delete(softwareMachineId);
+        if(companyDao.exists(dataMaestersId)) {
             companyDao.delete(dataMaestersId);
+        }
+        if(companyDao.exists(greyMatterId)) {
             companyDao.delete(greyMatterId);
-        } catch (Exception e) {
-            //do nothing
         }
     }
 }
