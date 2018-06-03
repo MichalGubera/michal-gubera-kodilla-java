@@ -13,4 +13,14 @@ public final class OrderDto {
     public List<ItemDto> getItems() {
         return items;
     }
+
+    public OrderDto() {
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "items=" + items +
+                '}';
+    }
 }
