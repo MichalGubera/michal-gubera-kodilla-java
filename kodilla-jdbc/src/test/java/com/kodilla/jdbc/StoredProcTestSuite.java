@@ -50,6 +50,6 @@ public class StoredProcTestSuite {
         if(rs.next()) {
             howMany = rs.getInt("HOW_MANY");
         }
-        assertEquals(3, howMany);
+        assertEquals(2, howMany);
     }
 }
