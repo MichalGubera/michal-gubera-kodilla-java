@@ -4,7 +4,7 @@ public final class SimpleProduct {
     private final String productName;
     private final double productPrice;
 
-    public SimpleProduct(final String productName, final double productPrice) {
+    public SimpleProduct(String productName, double productPrice) {
         this.productName = productName;
         this.productPrice = productPrice;
     }
@@ -21,7 +21,9 @@ public final class SimpleProduct {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof SimpleProduct)) return false;
+
         SimpleProduct that = (SimpleProduct) o;
-        return productName.equals(that.productName);
+
+        return productName != null ? productName.equals(that.productName) : that.productName == null;
     }
 }
